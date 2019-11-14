@@ -1,0 +1,52 @@
+
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="content">
+    <div class="py-5 text-center">
+        <h2>Category</h2>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{/categories/create}" method="post" class="card">
+                <div class="card-header">
+                    Add category
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Category name</label>
+                        <input type="text" class="form-control" name="name" required placeholder="Enter name">
+                    </div>
+                    <input type="hidden" name="@{_csrf.parameterName}" value="@{_csrf.token}"/>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-block btn-success" value="Save">
+                    </div>
+                    Add category
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="category : ${categories}">
+                <th scope="row">1</th>
+                <td><span th:text="${category.id}"></span></td>
+                <td><span th:text="${category.name}"></span></td>
+                <td>
+                    <a th:href="@{|/categories/update/${category.id}|}" class="m-1"><span class="fa fa-edit"></span></a>
+                    <a th:href="@{|/categories/delete/${category.id}|}" class="m-1"><span class="fa fa-trash"></span></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>

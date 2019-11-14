@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="content">
+    <div class="py-5 text-center">
+        <h2>Profile</h2>
+        <p class="lead">Welcome, <span th:text="${currentClient.username}"></span></p>
+    </div>
+
+
+</div>
+</html>

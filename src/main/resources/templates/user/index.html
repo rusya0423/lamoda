@@ -1,0 +1,45 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="content">
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="text-center">
+            <h1 class="display-3">Click and Ware SHOP</h1>
+            </div>
+            </div>
+    </div>
+
+    <div class="container">
+       <div class="text-center">
+        <div class="row">
+            <div th:each="dress : ${dresses}" class="col-3">
+                <div class="mt-5">
+                    <div class="card m-1">
+                        <div class="card-header" >
+                            <h3 th:text="${dress.name}" class="text-info"></h3>
+                            <p >PRICE <span th:text="${dress.price}" class="text-success, font-weight-bold" ></span></p>
+
+                        </div>
+                        <div class="card-body">
+<!--                            <p th:text="${dress.description}"></p>-->
+                            <p class="text-muted">Quantity <span th:text="${dress.quantity}" class="text-danger"></span> </p>
+                            <img style="width: 100px; height:100px" th:src="@{|/images/${dress.id}|}" alt="">
+                            <p class="text-info" th:text="${dress.category.getName()}"></p>
+<!--                            <a th:href="@{|/dresses/update/${dress.id}|}" class="m-1"><i class="fa fa-edit"></i></a>-->
+<!--                            <a th:href="@{|/dresses/delete/${dress.id}|}" class="m-1"><span class="fa fa-trash"></span></a>-->
+                        </div>
+                        <a th:href="@{|/cart/buy/${dress.id}|}" class="btn btn-success">BUY</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+        <hr>
+
+    </div>
+
+
+</div>
+</html>

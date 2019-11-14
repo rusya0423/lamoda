@@ -1,0 +1,67 @@
+
+<html
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="content">
+    <div class="py-5 text-center">
+        <div class="row">
+<!--            <div th:each="item : ${session.cart}" class="col-3">-->
+<!--                <div class="mt-5">-->
+<!--                <div class="card m-1">-->
+<!--                    <div class="card-header" >-->
+<!--                        <p th:text="${item.dress.name}"></p>-->
+<!--                        <p th:text="${item.dress.price}"></p>-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                        <p th:text="${item.dress.description}"></p>-->
+<!--&lt;!&ndash;                        <a th:href="@{|/dresses/update/${dress.id}|}" class="m-1"><span class="fa fa-edit"></span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a th:href="@{|/dresses/delete/${dress.id}|}" class="m-1"><span class="fa fa-trash"></span></a>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <form th:action="@{/cart/update}" method="post">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity
+                        <button class="fa fa-edit" type="submit" id="button-addon2" ></button></th>
+                    <th scope="col">Sub Total</th>
+                    <th scope="col">Action</th>
+
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${session.cart}">
+                    <td><span th:text="${item.dress.id}"></span></td>
+                    <td><span th:text="${item.dress.name}"></span></td>
+                    <td><span th:text="${item.dress.price}"></span></td>
+                    <td><input type="number" class="form-control" th:value="${item.quantity}"  name="quantity" aria-describedby="button-addon2" style="width: 100px"></td>
+                    <td><span th:text="${item.quantity*item.dress.price}"></span></td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td th:text="${total}"></td>
+                </tr>
+                </tbody>
+            </table>
+                <a th:href="@{|/index|}" class="btn btn-info">Continue shopping</a>
+                <a th:href="@{|/cart/checkout/|}" class="btn btn-info">Checkout</a>
+            </form>
+        </div>
+    </div>
+    </div>
+</html>
+
+
+
